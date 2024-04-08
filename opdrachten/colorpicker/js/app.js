@@ -1,28 +1,59 @@
-const color = document.getElementsByClassName("colors__color");
+class ColorCard{
+    id;
+    color;
+    addToList;
+    htmlElement;
+    circle;
+    text
+
+    constructor(newId, newColor, addToList){
+        this.id = newId;
+        this.color = newColor;
+        this.addToList = addToList;
 
 
+        this.htmlElement = document.createElement("li");
+        this.htmlElement.classList = "colors__color";
+        this.circle = document.createElement("figure");
+        this.circle.classList = "colors__circle";
+        this.circle.style.background = this.color;
+        this.htmlElement.appendChild(this.circle);
+        this.text = document.createElement("p");
+        this.text.innerText = "Copied";
+        this.text.classList = "colors__text";
+        this.htmlElement.appendChild(this.text);
+        this.htmlElement.onclick = this.onHTMLElementClicked;
+        this.render();
+    }
 
-for (let index = 0; index < color.length; index++) {
+    onHTMLElementClicked = () => {
+        this.circle.classList.add("colors__circle--selected");
+        window.navigator.title = this.color;
+        window.navigator.clipboard.writeText(this.color);
+    }
 
+    render(){
+    
+        this.addToList.appendChild(this.htmlElement);
+    
+    }
+
+}
+
+for (let i = 1; i < 101; i++) {
 
     let randomHue = Math.floor(Math.random() *  (360 - 1) + 1);
     let randomSaturation = Math.floor(Math.random() * (79 - 11) + 11) + "%";
     let randomLightness = Math.floor(Math.random() * (100 - 11) + 11) + "%";
 
-    color[index].children[0].style.background = `hsl(${randomHue}, ${randomSaturation}, ${randomLightness})`;
+    let hsl = `hsl(${randomHue}, ${randomSaturation}, ${randomLightness})`;
 
-    console.log(randomHue, randomSaturation, randomLightness);
-
-
+    new ColorCard(i, hsl, document.getElementById("js--colors"));
     
-
-
-    color[index].onclick = function(){
-        color[index].children[0].classList.add("colors__circle--selected");
-    	navigator.clipboard.writeText(color[index].children[0].style.background);
-        console.log(color[index].children[0])
-        document.title = color[index].children[0].style.background;
-        
-    }
 }
 
+
+
+
+
+console.log(window.navigator);
