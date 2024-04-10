@@ -1,0 +1,28 @@
+[{
+    "from/to": "Cedric",
+    "amount": 10
+},
+
+{
+    "from/to": "Klaas",
+    "amount": 100
+},
+
+{
+    "from/to": "Peter",
+    "amount": 102
+},
+
+{
+    "from/to": "Thomas",
+    "amount": -10
+},
+
+
+{
+    "from/to": "Jeroen",
+    "amount": -130
+}
+
+
+]

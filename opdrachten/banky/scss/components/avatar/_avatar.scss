@@ -1,0 +1,26 @@
+@use '../../abstracts/colors';
+@use '../../abstracts/vars'; 
+
+.avatarWrapper{
+    height: 100%;
+    width: 100%;
+    grid-column-start: 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #eee;
+    background: linear-gradient(to bottom right, map-get(colors.$baseColors, "background"), 30%, map-get(colors.$baseColors,"backgroundDark"));
+    width: 8rem;
+    height: 8rem;
+    font-size: 450%;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow: vars.$box-shadow;
+}

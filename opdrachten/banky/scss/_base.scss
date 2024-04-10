@@ -6,4 +6,6 @@ body{
     font-family: "Open Sans", sans-serif;
     background: linear-gradient(to bottom right, map-get(colors.$baseColors, "background"), 10%, map-get(colors.$baseColors,"backgroundDark"));
     min-height: 100vh;
+    
+    
 }

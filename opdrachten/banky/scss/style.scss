@@ -1,5 +1,8 @@
 @use './abstracts/reset';
 @use './base';
-@use './abstracts/mediaqueries';
+@use './abstracts/mixins';
+@use './abstracts/mediaqueries.scss';
+@use './components/avatar/avatar';
 @use './components/banky/banky';
 @use './components/header/header';
+@use './components/scrollbar/scrollbar';
