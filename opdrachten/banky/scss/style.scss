@@ -1,3 +1,5 @@
 @use './abstracts/reset';
 @use './base';
 @use './abstracts/mediaqueries';
+@use './components/banky/banky';
+@use './components/header/header';

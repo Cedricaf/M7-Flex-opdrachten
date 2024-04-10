@@ -1,0 +1,104 @@
+@use '../../abstracts/vars';
+@use '../../abstracts/colors';
+
+.banky{
+    background: white;
+    min-height: calc(100vh - map-get(vars.$vhCalc , "heightOfHeader" ) - map-get(vars.$vhCalc , "paddingOfBody" ) * 2);
+    display: grid;
+    grid-template-columns: 35% 65%;
+    padding: 4rem;
+    
+
+
+    &__section{
+
+    }
+
+    &__header{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        position: relative;
+        justify-content: space-between;
+
+        & > div{
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+    }
+
+    &__money{
+        font-weight: 400;
+        font-size: 250%;
+    }
+
+   
+
+    &__logo{
+        
+        border-radius: 50%;
+        font-size: 2rem;
+        height: 5rem;
+        width: 5rem;
+        background: linear-gradient(to bottom right, map-get(colors.$baseColors, "background"), 30%, map-get(colors.$baseColors,"backgroundDark"));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #eee;
+        box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &__eye{
+        border-radius: 50%;
+        font-size: 2rem;
+        height: 3rem;
+        width: 3rem;
+        background: hsl(229, 34%, 76%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #eee;
+        box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.2);
+    }
+    &__transactions{
+        list-style: none;
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__transaction{
+        display: flex;
+        font-size: 120%;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    &__name{
+        font-weight:300;
+        font-size: 120%;
+    }
+
+    &__amount{
+        font-weight: 300;
+        font-size: 120%;
+    }
+
+    &__transferButton{
+        background: linear-gradient(to bottom right, map-get(colors.$baseColors, "background"), 30%, map-get(colors.$baseColors,"backgroundDark"));
+        color: #eee;
+        width: 5rem;
+        height: 2rem;
+        border: none;
+        padding: 1rem;
+        margin-top: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.2);
+    }
+}
