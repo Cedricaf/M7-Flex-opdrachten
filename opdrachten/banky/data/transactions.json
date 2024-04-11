@@ -1,28 +1,59 @@
-[{
-    "from/to": "Cedric",
-    "amount": 10
-},
+{   
+    "BankAccount": [{
+            "from/to": "Cedric",
+            "amount": 10
+        },
 
-{
-    "from/to": "Klaas",
-    "amount": 100
-},
+        {
+            "from/to": "Klaas",
+            "amount": 100
+        },
 
-{
-    "from/to": "Peter",
-    "amount": 102
-},
+        {
+            "from/to": "Peter",
+            "amount": 102
+        },
 
-{
-    "from/to": "Thomas",
-    "amount": -10
-},
+        {
+            "from/to": "Thomas",
+            "amount": -10
+        },
 
 
-{
-    "from/to": "Jeroen",
-    "amount": -130
+        {
+            "from/to": "Jeroen",
+            "amount": -130
+        }
+
+
+    ],
+
+        "savingsAccount": [{
+            "from/to": "bedrijf",
+            "amount": 1000
+        },
+
+        {
+            "from/to": "Klaas",
+            "amount": -100
+        },
+
+        {
+            "from/to": "john",
+            "amount": 102
+        },
+
+        {
+            "from/to": "Thomas",
+            "amount": -10
+        },
+
+
+        {
+            "from/to": "Jeroen",
+            "amount": -130
+        }
+
+
+    ]
 }
-
-
-]
