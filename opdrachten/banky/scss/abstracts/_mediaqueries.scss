@@ -13,12 +13,7 @@
             position: relative;
             align-items: flex-start;
             padding-bottom: 2rem;
-
-
-            &::after{
-                @include mixins.afterStyle;
-            }
-
+           
         }
     }
 }

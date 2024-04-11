@@ -1,5 +1,5 @@
 {   
-    "BankAccount": [{
+    "Bankrekening": [{
             "from/to": "Cedric",
             "amount": 10
         },
@@ -23,12 +23,17 @@
         {
             "from/to": "Jeroen",
             "amount": -130
+        },
+
+        {
+            "from/to": "Jeff Bezos",
+            "amount": 1200540
         }
 
 
     ],
 
-        "savingsAccount": [{
+        "ZZP-Rekening": [{
             "from/to": "bedrijf",
             "amount": 1000
         },
@@ -53,6 +58,8 @@
             "from/to": "Jeroen",
             "amount": -130
         }
+        
+        
 
 
     ]
