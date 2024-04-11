@@ -83,21 +83,46 @@ class Header{
     
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const header = new Header("body");
-    header.render();
-});
 
 
-class Main{
-    constructor(){
+class BankyMain {
+    placeToRenderBankyMain;
+    mainElement;
+    
+    leftsection = new BankyLeftSection();
+    rightsection;
+
+    constructor(placeToRenderBankyMain) {
+        this.placeToRenderBankyMain = document.getElementsByClassName(placeToRenderBankyMain)[0];
         this.mainElement = document.createElement("main");
         this.mainElement.classList = "banky";
 
+        this.rightsection = new BankyRightSection(this.mainElement);
+    }
+
+    render() {
+        if (!this.placeToRenderBankyMain) {
+            console.error('Place to render BankyMain not found.');
+            return;
+        }
+
+        this.placeToRenderBankyMain.appendChild(this.mainElement);
+        this.mainElement.appendChild(this.leftsection.leftSectionElement);
+        this.leftsection.render();
+
+        this.rightsection.render();
+    }
+}
+
+
+
+
+class BankyLeftSection{
+    constructor(){
         this.leftSectionElement = document.createElement("section");
         this.leftSectionElement.classList = "banky__section banky__section--left";
 
-        this.bankywrapperElement = document.createElement("div");
+        this.bankyHeaderWrapperElement = document.createElement("div");
 
         this.bankyHeaderElement = document.createElement("header");
         this.bankyHeaderElement.classList = "banky__header";
@@ -110,30 +135,107 @@ class Main{
 
         this.bankylogoText = document.createElement("h1");
         this.bankylogoText.classList = "banky__money";
+        this.bankylogoText.innerText = "Balance €90";
 
-        this.bankybutton = document.createElement("button")
-        this.bankybutton.classList = "banky__eyeButton";
+        this.eyeButton = document.createElement("button");
+        this.eyeButton.classList = "banky__eyeButton";
 
-        this.bankyfigure = document.createElement("figure");
-        this.bankyfigure.classList = "banky__eye";
+        this.eyeFigure = document.createElement("figure");
+        this.eyeFigure.classList = "banky__eye";
 
         this.bankybuttonI = document.createElement("i");
         this.bankybuttonI.classList = "fa-solid fa-eye";
 
+        this.transactionsElement = document.createElement("ul");
+        this.transactionsElement.classList = "banky__transactions";
+
+        this.transactionElement = document.createElement("li");
+        this.transactionElement.classList = "banky__transaction";
+        this.transactionElement.innerText = "Cedric";
+
+        this.transactionFrom = document.createElement("h3");
+        this.transactionFrom.classList = "banky__name";
+
+        this.transactionAmount = document.createElement("h3");
+        this.transactionAmount.classList = "banky__amount";
+        this.transactionAmount.innerText = "+€10";
+
+        this.transferButton = document.createElement("button");
+        this.transferButton.classList = "banky__transferButton";
+        this.transferButton.innerText = "Transfer";
+    }
+
+    render(){
+        this.leftSectionElement.appendChild(this.bankyHeaderElement);
+        this.bankyHeaderElement.appendChild(this.bankyHeaderWrapperElement);
+        this.bankyHeaderWrapperElement.appendChild(this.bankylogoElement);
+        this.bankylogoElement.appendChild(this.bankylogoIElement);
+        this.bankyHeaderWrapperElement.appendChild(this.bankylogoText);
+        this.bankyHeaderWrapperElement.appendChild(this.eyeButton);
+        this.eyeButton.appendChild(this.eyeFigure);
+        this.eyeFigure.appendChild(this.bankybuttonI);
+        this.leftSectionElement.appendChild(this.transactionsElement);
+        this.transactionsElement.appendChild(this.transactionElement);
+        this.transactionElement.appendChild(this.transactionFrom);
+        this.transactionElement.appendChild(this.transactionAmount);
+        this.leftSectionElement.appendChild(this.transferButton);
+    }
+}
 
 
+
+
+class BankyRightSection {
+    mainElement;
+    constructor(mainElement) {
+        this.mainElement = mainElement;
+        this.rightSectionElement = document.createElement("section");
+        this.rightSectionElement.classList = "banky__section banky__section--right";
+
+        this.accountsElement = document.createElement("ul");
+        this.accountsElement.classList = "banky__accounts";
+
+        this.accountElement = document.createElement("li");
+        this.accountElement.classList = "banky__account";
+
+        this.bankySwitchButton = document.createElement("button");
+        this.bankySwitchButton.classList = "banky__switchAccount";
+
+        this.bankySwitchAccountFigure = document.createElement("figure");
+        this.bankySwitchAccountFigure.classList = "banky__logo";
+
+        this.bankySwitchI = document.createElement("i");
+        this.bankySwitchI.classList = "fa-solid fa-house";
+
+        this.bankyNameOfAccount = document.createElement("h4");
+        this.bankyNameOfAccount.classList = "banky__nameOfAccount";
+        this.bankyNameOfAccount.innerText = "Bank-Account";
     }
 
     render() {
-        if (!this.placeToRenderHeader) {
-            console.error('Place to render header not found.');
-            return;
-        }
+        this.mainElement.appendChild(this.rightSectionElement);
+
+        this.rightSectionElement.appendChild(this.accountsElement);
+        this.accountsElement.appendChild(this.accountElement);
+        this.accountElement.appendChild(this.bankySwitchButton);
+        this.bankySwitchButton.appendChild(this.bankySwitchAccountFigure);
+        this.bankySwitchAccountFigure.appendChild(this.bankySwitchI);
+        this.accountElement.appendChild(this.bankyNameOfAccount);
+    }
+}
+
+
+class App{
+    bankyHeader;
+    bankyMain;
+    constructor(){
+        this.header = new Header("body");
+        this.bankyMain = new BankyMain("body");
+
+        this.header.render();
+        this.bankyMain.render();
 
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const main = new Main("body");
-    main.render();
-});
+const app = new App();
