@@ -27,38 +27,27 @@
 
         {
             "from/to": "Jeff Bezos",
-            "amount": 1200540
+            "amount": 1200
         }
 
 
     ],
 
-        "ZZP-Rekening": [{
-            "from/to": "bedrijf",
-            "amount": 1000
-        },
-
-        {
-            "from/to": "Klaas",
-            "amount": -100
-        },
-
-        {
-            "from/to": "john",
-            "amount": 102
-        },
-
-        {
-            "from/to": "Thomas",
-            "amount": -10
-        },
+    "ZZP-Rekening": [{
+        "from/to": "Amazon",
+        "amount": -160
+    },
 
 
-        {
-            "from/to": "Jeroen",
-            "amount": -130
-        }
-        
+    {
+        "from/to": "Google",
+        "amount": 34
+    },
+
+    {
+        "from/to": "Apple",
+        "amount": 230
+    }
         
 
 

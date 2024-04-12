@@ -88,18 +88,25 @@ class BankyMain {
     this.mainElement = document.createElement("main");
     this.mainElement.classList = "banky";
 
-    this.rightsection = new BankyRightSection(this.mainElement);
+    
+    this.rightsection = new BankyRightSection(this.mainElement, this);
   }
 
   makeButtonsFromData(data) {
-    console.log(data);
+    
     this.rightsection.makeButtonsFromData(data);
   }
 
   makeTransactionsFromData(data) {
-    this.leftsection.makeTransactionsFromData("Bankrekening", data);
-    console.log(data);
+    this.leftsection.makeTransactionsFromData(Object.entries(data)[0][0], data);
+   
   }
+
+  callFromRightSection(account, data){
+    this.leftsection.makeTransactionsFromData(account, data);
+  }
+
+  
 
   render() {
     if (!this.placeToRenderBankyMain) {
@@ -137,6 +144,7 @@ class BankyLeftSection {
 
     this.eyeButton = document.createElement("button");
     this.eyeButton.classList = "banky__eyeButton";
+    this.eyeButton.onclick = this.eyeButtonClicked;
 
     this.eyeFigure = document.createElement("figure");
     this.eyeFigure.classList = "banky__eye";
@@ -147,16 +155,22 @@ class BankyLeftSection {
     this.transactionsElement = document.createElement("ul");
     this.transactionsElement.classList = "banky__transactions";
   }
+  eyeButtonClicked = ()=>{
+    this.transactionsElement.classList.toggle("banky__transactions--blur");
+    this.bankylogoText.classList.toggle("banky__money--blur");
+  }
 
   makeTransactionsFromData(accountToShow, data) {
     let totalMoney = 0;
+    
     for (let index = 0; index < data[accountToShow].length; index++) {
         totalMoney += data[accountToShow][index]["amount"];
         
     }
     this.bankylogoText.innerText = "Balance: €" + totalMoney;
     
-    console.log(totalMoney);
+    this.transactionsElement.innerHTML= "";
+
 
     for (let index = 0; index < data[accountToShow].length; index++) {
       this.transactionElement = document.createElement("li");
@@ -178,10 +192,7 @@ class BankyLeftSection {
       
     }
     // buiten de for loop zodat het niet wordt gelooped
-    this.transferButton = document.createElement("button");
-    this.transferButton.classList = "banky__transferButton";
-    this.transferButton.innerText = "Transfer";
-    this.leftSectionElement.appendChild(this.transferButton);
+    
   }
 
   render() {
@@ -194,13 +205,22 @@ class BankyLeftSection {
     this.eyeButton.appendChild(this.eyeFigure);
     this.eyeFigure.appendChild(this.bankybuttonI);
     this.leftSectionElement.appendChild(this.transactionsElement);
+
+    this.transferButton = document.createElement("button");
+    this.transferButton.classList = "banky__transferButton";
+    this.transferButton.innerText = "Transfer";
+    this.leftSectionElement.appendChild(this.transferButton);
   }
 }
 
 class BankyRightSection {
   mainElement;
-  constructor(mainElement) {
+  bankyMain;
+  constructor(mainElement, bankyMain) {
     this.mainElement = mainElement;
+    this.bankyMain = bankyMain;
+
+   
     this.rightSectionElement = document.createElement("section");
     this.rightSectionElement.classList = "banky__section banky__section--right";
 
@@ -212,6 +232,9 @@ class BankyRightSection {
     Object.entries(data).forEach((entry) => {
       this.accountElement = document.createElement("li");
       this.accountElement.classList = "banky__account";
+      this.accountElement.onclick = () => {
+        this.bankyMain.callFromRightSection(entry[0], data);
+      }
 
       this.bankySwitchButton = document.createElement("button");
       this.bankySwitchButton.classList = "banky__switchAccount";

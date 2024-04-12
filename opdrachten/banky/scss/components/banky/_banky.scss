@@ -1,6 +1,7 @@
 @use '../../abstracts/vars';
 @use '../../abstracts/colors';
 @use '../../abstracts/mediaqueries';
+@use '../../abstracts/animations';
 @use '../../abstracts/mixins';
 
 
@@ -12,6 +13,7 @@
     padding: 4rem;
     max-width: 85rem;
     margin: 0 auto;
+    transition-delay: 0.8s;
     
 
 
@@ -55,6 +57,10 @@
     &__money{
         font-weight: 400;
         font-size: 250%;
+
+        &--blur{
+            filter:blur(0.27rem);
+        }
     }
 
    
@@ -95,6 +101,10 @@
         gap: 2rem;
         height: 30rem;
         overflow-y: scroll;
+
+        &--blur{
+            filter:blur(0.27rem);
+        }
         
     }
 
@@ -106,8 +116,9 @@
         position: relative;
         padding: 0.5rem;
         padding-bottom: 0.5rem;
+        @include animations.popupMixin;
 
-
+        
         &::after{
             @include mixins.afterStyle;
         }
@@ -160,6 +171,10 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+
+        &:hover{
+            cursor: pointer;
+        }
     
     }
 
